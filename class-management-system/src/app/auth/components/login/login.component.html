@@ -1,0 +1,23 @@
+<!-- login.component.html -->
+<div class="login-body">
+    <div class="box">
+        <span class="borderLine"></span>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h2>Login</h2>
+            <div class="inputBox">
+                <input type="email" formControlName="email" required>
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input type="password" formControlName="password" required>
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div class="links">
+                <a href="#">Forgot Password</a>
+            </div>
+            <button type="submit" id="submit" class="btn btn-info">Login</button>
+        </form>
+    </div>
+</div>

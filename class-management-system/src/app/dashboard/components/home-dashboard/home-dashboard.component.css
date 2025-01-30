@@ -1,0 +1,15 @@
+.hero-img {
+    background-image: url('/assets/ft.jpg');
+    /* Correct relative path to image */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    /* Ensure it takes the full height of the parent */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    /* Ensure it is behind the text content */
+}

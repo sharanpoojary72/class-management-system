@@ -1,0 +1,26 @@
+<!-- navbar.component.html -->
+<nav class="navbar flex items-center justify-between bg-black px-4 min-h-0">
+    <!-- Logo Section -->
+    <div class="logo navbar-start">
+        <!-- <h4 class="text-white text-lg font-bold">TechLearn</h4> -->
+    </div>
+    <!-- Navigation Links -->
+    <button class="block md:hidden text-white text-2xl focus:outline-none" id="menu-toggle">
+        ☰
+    </button>
+    <ul class="nav-links flex-col md:flex-row md:flex hidden navbar-end gap-4 mt-2 md:mt-0 text-white"
+        id="menu-links">
+        <li class="cursor-pointer hover:text-blue-500">
+            <a routerLink="/">Home</a>
+        </li>
+        <li *ngIf="!isAuthenticated()" class="cursor-pointer hover:text-blue-500">
+            <a [routerLink]="['/login/student-login']" [queryParams]="{ role: 'student' }">Student Login</a>
+        </li>
+        <li *ngIf="!isAuthenticated()" class="cursor-pointer hover:text-blue-500">
+            <a [routerLink]="['/login/teacher-login']" [queryParams]="{ role: 'teacher' }">Faculty Login</a>
+        </li>
+        <li *ngIf="isAuthenticated()" class="cursor-pointer hover:text-blue-500">
+            <button (click)="onLogout()">Logout</button>
+        </li>
+    </ul>
+</nav>
