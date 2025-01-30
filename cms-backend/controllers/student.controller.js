@@ -1,5 +1,5 @@
 const Student = require('../models/studentSchema');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Get all students
 exports.getAllStudents = async (req, res) => {

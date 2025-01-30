@@ -1,5 +1,5 @@
 const Teacher = require('../models/teacher');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Get all teachers
 exports.getAllTeachers = async (req, res) => {
