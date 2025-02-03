@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -11,7 +12,6 @@ export class StudentDashboardComponent implements OnInit {
     { className: 'Science 202', subject: 'Physics & Chemistry', schedule: 'Tue & Thu, 12:00 PM' },
     { className: 'History 303', subject: 'World History', schedule: 'Fri, 2:00 PM' }
   ];
-
   assignments = [
     {
       title: 'Algebra Homework',
@@ -29,12 +29,14 @@ export class StudentDashboardComponent implements OnInit {
       fileUrl: null
     }
   ];
-
   selectedFile: File | null = null;
+  teacherAssignments: any[] = []; // Store teacher-uploaded assignments
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.fetchTeacherAssignments(); // Fetch teacher-uploaded assignments on component load
+  }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -51,80 +53,17 @@ export class StudentDashboardComponent implements OnInit {
       alert('Please select a file to submit.');
     }
   }
+
+  // Fetch teacher-uploaded assignments
+  fetchTeacherAssignments(): void {
+    this.http.get<any[]>('http://localhost:5000/api/teacher/assignments/teacherAssignments').subscribe(
+      (assignments) => {
+        this.teacherAssignments = assignments; // Store fetched assignments
+      },
+      (error) => {
+        console.error(error);
+        alert('Failed to fetch teacher-uploaded assignments.');
+      }
+    );
+  }
 }
-
-
-
-
-// import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-
-// interface Class {
-//   className: string;
-//   subject: string;
-//   schedule: string;
-// }
-
-// interface Assignment {
-//   title: string;
-//   dueDate: string;
-//   fileUrl?: string;
-// }
-
-// @Component({
-//   selector: 'app-student-dashboard',
-//   templateUrl: './student-dashboard.component.html',
-//   styleUrls: ['./student-dashboard.component.css']
-// })
-// export class StudentDashboardComponent implements OnInit {
-//   classes: Class[] = [];
-//   assignments: Assignment[] = [];
-//   selectedFile: File | null = null;
-
-//   constructor(private http: HttpClient) {}
-
-//   ngOnInit(): void {
-//     this.getClasses();
-//     this.getAssignments();
-//   }
-
-//   // Fetch classes from the server
-//   getClasses(): void {
-//     this.http.get<Class[]>('http://localhost:3000/api/classes').subscribe({
-//       next: (data) => (this.classes = data),
-//       error: (err) => console.error('Error fetching classes:', err),
-//     });
-//   }
-
-//   // Fetch assignments from the server
-//   getAssignments(): void {
-//     this.http.get<Assignment[]>('http://localhost:3000/api/assignments').subscribe({
-//       next: (data) => (this.assignments = data),
-//       error: (err) => console.error('Error fetching assignments:', err),
-//     });
-//   }
-
-//   // Handle file selection
-//   onFileSelected(event: any): void {
-//     this.selectedFile = event.target.files[0];
-//   }
-
-//   // Submit assignment to the server
-//   submitAssignment(): void {
-//     if (this.selectedFile) {
-//       const formData = new FormData();
-//       formData.append('assignment', this.selectedFile);
-
-//       this.http.post('http://localhost:3000/api/assignments', formData).subscribe({
-//         next: () => {
-//           alert('Assignment submitted successfully!');
-//           this.selectedFile = null;
-//           this.getAssignments(); // Refresh assignments
-//         },
-//         error: (err) => console.error('Error submitting assignment:', err),
-//       });
-//     } else {
-//       alert('Please select a file to upload.');
-//     }
-//   }
-// }

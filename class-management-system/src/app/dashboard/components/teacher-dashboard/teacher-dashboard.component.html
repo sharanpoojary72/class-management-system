@@ -34,21 +34,70 @@
         </div>
     </section>
 
-    <!-- Upload Assignments Section -->
-    <section class="upload-assignment-section">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Upload an Assignment</h2>
-        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col gap-4 max-w-lg">
-            <label class="text-gray-700 font-medium">Select Class:</label>
-            <select [(ngModel)]="selectedClass" class="border border-gray-300 rounded-md px-3 py-2 w-full">
-                <option *ngFor="let class of classes" [value]="class">{{ class.className }}</option>
-            </select>
-            <input type="text" [(ngModel)]="newAssignment.title" placeholder="Assignment Title"
-                class="border border-gray-300 rounded-md px-3 py-2 w-full" />
-            <input type="file" (change)="onFileSelected($event)"
-                class="border border-gray-300 rounded-md px-3 py-2 w-full" />
-            <button class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700" (click)="uploadAssignment()">
-                Upload Assignment
-            </button>
+    <!-- Students' Assignments -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Students' Assignments</h2>
+        <div *ngIf="studentsAssignments.length > 0; else noStudentAssignments">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div *ngFor="let assignment of studentsAssignments" class="bg-white shadow-md rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800">{{ assignment.title }}</h3>
+                    <p class="text-sm text-gray-500 mt-2">📅 Due: {{ assignment.dueDate | date }}</p>
+                    <a [href]="'http://localhost:5000' + assignment.fileUrl" target="_blank" class="block mt-4 text-blue-500 underline text-sm">
+                        View Submission
+                    </a>
+                </div>
+            </div>
+        </div>
+        <ng-template #noStudentAssignments>
+            <p class="text-gray-600">No assignments submitted by students yet.</p>
+        </ng-template>
+    </section>
+
+    <!-- Teacher's Assignments -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Assignments</h2>
+        <div *ngIf="teacherAssignments.length > 0; else noTeacherAssignments">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div *ngFor="let assignment of teacherAssignments" class="bg-white shadow-md rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800">{{ assignment.title }}</h3>
+                    <p class="text-sm text-gray-500 mt-2">📅 Due: {{ assignment.dueDate | date }}</p>
+                    <a [href]="'http://localhost:5000' + assignment.fileUrl" target="_blank" class="block mt-4 text-blue-500 underline text-sm">
+                        View Assignment
+                    </a>
+                </div>
+            </div>
+        </div>
+        <ng-template #noTeacherAssignments>
+            <p class="text-gray-600">No assignments uploaded yet.</p>
+        </ng-template>
+    </section>
+
+    <!-- Upload Assignment Form -->
+    <section>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Upload Assignment</h2>
+        <div class="bg-white shadow-md rounded-lg p-6 max-w-lg">
+            <form (ngSubmit)="uploadAssignment()">
+                <label class="block mb-4">
+                    Select Class:
+                    <select [(ngModel)]="selectedClass" name="class"
+                        class="border border-gray-300 rounded-md px-3 py-2 w-full">
+                        <option *ngFor="let cls of classes" [ngValue]="cls">{{ cls.className }}</option>
+                    </select>
+                </label>
+                <label class="block mb-4">
+                    Assignment Title:
+                    <input [(ngModel)]="newAssignment.title" name="title" type="text"
+                        class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+                </label>
+                <label class="block mb-4">
+                    Upload File:
+                    <input type="file" (change)="onFileSelected($event)"
+                        class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+                </label>
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">
+                    Upload
+                </button>
+            </form>
         </div>
     </section>
 </div>

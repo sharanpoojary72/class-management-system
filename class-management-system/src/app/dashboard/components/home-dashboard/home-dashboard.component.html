@@ -47,10 +47,10 @@
     <header class="bg-blue-900 text-white py-4 sticky-header">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <a routerLink="">
-                <h1 class="text-3xl font-bold">TechLearn</h1>
+                <h1 class="text-3xl font-bold" data-aos="fade-left">TechLearn</h1>
             </a>
             <nav>
-                <ul class="flex space-x-6">
+                <ul class="flex space-x-6" data-aos="fade-right">
                     <li><a routerLink="" fragment="features" class="hover:underline">Features</a></li>
                     <li><a routerLink="" fragment="courses" class="hover:underline">Courses</a></li>
                     <li><a routerLink="" fragment="contact" class="hover:underline">Contact</a></li>
@@ -62,9 +62,9 @@
     <section class="text-white py-20 h-[85vh] flex items-center relative">
         <div class="hero-img absolute inset-0 z-0"></div>
         <div class="container mx-auto px-4 text-center relative z-10">
-            <h1 class="font-extrabold mb-4 drop-shadow-2xl sm:text-8xl lg:text-8xl">TECHLEARN</h1>
-            <h2 class="text-4xl font-bold mb-4">Master the Future of Technology</h2>
-            <p class="text-lg mb-6">Learn cutting-edge IT and Tech skills from the best instructors in the industry.</p>
+            <h1 class="font-extrabold mb-4 drop-shadow-2xl sm:text-8xl lg:text-8xl" data-aos="fade-down">TECHLEARN</h1>
+            <h2 class="text-4xl font-bold mb-4" data-aos="fade-up">Master the Future of Technology</h2>
+            <p class="text-lg mb-6" data-aos="fade-up">Learn cutting-edge IT and Tech skills from the best instructors in the industry.</p>
             <a routerLink="" fragment="courses"
                 class="bg-white text-blue-500 px-6 py-3 rounded-full shadow-lg font-semibold hover:bg-gray-100">
                 View Courses
@@ -75,20 +75,20 @@
     <!-- Features Section -->
     <section id="features" class="py-16 bg-slate-700 z-0">
         <div class="container mx-auto px-4 text-center">
-            <h3 class="text-3xl font-bold mb-8 text-white">Why Choose Us?</h3>
+            <h3 class="text-3xl font-bold mb-8 text-white" data-aos="fade-down">Why Choose Us?</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="bg-white p-6 shadow-md rounded-lg">
+                <div class="bg-white p-6 shadow-md rounded-lg" data-aos="zoom-in">
                     <h4 class="text-xl font-semibold mb-4">Expert Instructors</h4>
                     <p>Learn from industry leaders with real-world experience.</p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="bg-white p-6 shadow-md rounded-lg">
+                <div class="bg-white p-6 shadow-md rounded-lg" data-aos="zoom-in">
                     <h4 class="text-xl font-semibold mb-4">Flexible Learning</h4>
                     <p>Access online and offline classes that fit your schedule.</p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="bg-white p-6 shadow-md rounded-lg">
+                <div class="bg-white p-6 shadow-md rounded-lg" data-aos="zoom-in">
                     <h4 class="text-xl font-semibold mb-4">Certifications</h4>
                     <p>Get certified and boost your career opportunities.</p>
                 </div>
@@ -99,10 +99,10 @@
     <!-- Courses Section -->
     <section id="courses" class="py-16 bg-gray-200">
         <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-8">Our Courses</h3>
+            <h3 class="text-3xl font-bold text-center mb-8" data-aos="fade-up">Our Courses</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Course 1 -->
-                <div class="course-card">
+                <div class="course-card" data-aos="flip-left">
                     <img src="../../../../assets/webdev.jpg" alt="Web Development">
                     <div class="course-content">
                         <h4 class="text-xl font-semibold mb-2">Web Development</h4>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <!-- Course 2 -->
-                <div class="course-card">
+                <div class="course-card" data-aos="flip-left">
                     <img src="../../../../assets/data-science.jpg" alt="Data Science">
                     <div class="course-content">
                         <h4 class="text-xl font-semibold mb-2">Data Science</h4>
@@ -118,7 +118,7 @@
                     </div>
                 </div>
                 <!-- Course 3 -->
-                <div class="course-card">
+                <div class="course-card" data-aos="flip-left">
                     <img src="../../../../assets/cybersecurity.jpg" alt="Cybersecurity">
                     <div class="course-content">
                         <h4 class="text-xl font-semibold mb-2">Cybersecurity</h4>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <!-- Course 4 -->
-                <div class="course-card">
+                <div class="course-card" data-aos="flip-left">
                     <img src="../../../../assets/Cloud-Computing-Basics.avif" alt="Cloud Computing">
                     <div class="course-content">
                         <h4 class="text-xl font-semibold mb-2">Cloud Computing</h4>
@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <!-- Course 5 -->
-                <div class="course-card">
+                <div class="course-card" data-aos="flip-left">
                     <img src="../../../../assets/Artificial-intelligente.jpg" alt="Artificial Intelligence">
                     <div class="course-content">
                         <h4 class="text-xl font-semibold mb-2">Artificial Intelligence</h4>
@@ -142,7 +142,7 @@
                     </div>
                 </div>
                 <!-- Course 6 -->
-                <div class="course-card">
+                <div class="course-card" data-aos="flip-left">
                     <img src="../../../../assets/mobileappdev.jpg" alt="Mobile App Development">
                     <div class="course-content">
                         <h4 class="text-xl font-semibold mb-2">Mobile App Development</h4>
@@ -154,11 +154,13 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-blue-600 text-white">
+    <section id="contact" class="py-16 bg-blue-600 text-white" >
         <div class="container mx-auto px-4 text-center">
-            <h3 class="text-3xl font-bold mb-8">Get in Touch</h3>
-            <p class="mb-4">Have questions? Reach out to us!</p>
-            <app-contact-form></app-contact-form>
+            <h3 class="text-3xl font-bold mb-8" data-aos="fade-down">Get in Touch</h3>
+            <p class="mb-4" data-aos="fade-down">Have questions? Reach out to us!</p>
+            <div data-aos="fade-up">
+                <app-contact-form ></app-contact-form>
+            </div>
         </div>
     </section>
 

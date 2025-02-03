@@ -18,8 +18,22 @@
         </div>
     </section>
 
+    <!-- Teacher Assignments Section -->
+    <section class="teacher-assignments-section mb-12">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Teacher Uploaded Assignments</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="assignment-card bg-white shadow-md rounded-lg p-6" *ngFor="let assignment of teacherAssignments">
+                <h3 class="text-lg font-semibold text-gray-800">{{ assignment.title }}</h3>
+                <p class="text-sm text-gray-500 mt-2">📅 Due: {{ assignment.dueDate | date }}</p>
+                <a [href]="'http://localhost:5000' + assignment.fileUrl" target="_blank" class="block mt-4 text-blue-500 underline text-sm">
+                    Download Assignment
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Assignments Section -->
-    <section class="assignments-section">
+    <!-- <section class="assignments-section">
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your Assignments</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="assignment-card bg-white shadow-md rounded-lg p-6" *ngFor="let assignment of assignments">
@@ -29,7 +43,7 @@
                     class="block mt-4 text-blue-500 underline text-sm">Download Assignment</a>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Assignment Submission Section -->
     <section class="upload-section mt-12">
@@ -44,37 +58,3 @@
         </div>
     </section>
 </div>
-
-
-
-
-
-<!-- <div class="dashboard-container">
-    <h1>Student Dashboard</h1>
-
-    <section class="classes-section">
-        <h2>Your Classes</h2>
-        <ul>
-            <li *ngFor="let class of classes">
-                <strong>{{ class.className }}</strong> - {{ class.subject }}
-                <em>(Schedule: {{ class.schedule }})</em>
-            </li>
-        </ul>
-    </section>
-
-    <section class="assignments-section">
-        <h2>Your Assignments</h2>
-        <ul>
-            <li *ngFor="let assignment of assignments">
-                <strong>{{ assignment.title }}</strong> - Due: {{ assignment.dueDate }}
-                <a *ngIf="assignment.fileUrl" [href]="assignment.fileUrl" target="_blank">Download</a>
-            </li>
-        </ul>
-
-        <div class="upload-section">
-            <h3>Submit an Assignment</h3>
-            <input type="file" (change)="onFileSelected($event)" />
-            <button (click)="submitAssignment()">Submit</button>
-        </div>
-    </section>
-</div> -->
