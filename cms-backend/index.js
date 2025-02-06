@@ -15,7 +15,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:4200', // Allow requests from Angular frontend
+    origin: 'http://localhost:4200'||'https://flourishing-genie-1c2f33.netlify.app/', // Allow requests from Angular frontend
 }));
 app.use(express.json()); // Parse JSON request bodies
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve uploaded files
