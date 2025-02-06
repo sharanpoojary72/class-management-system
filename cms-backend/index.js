@@ -14,9 +14,26 @@ const app = express();
 connectDB();
 
 // Middleware
+// Define allowed origins
+const allowedOrigins = [
+    'http://localhost:4200',
+    'https://flourishing-genie-1c2f33.netlify.app'
+];
+
+// Configure CORS middleware
 app.use(cors({
-    origin: 'http://localhost:4200'||'https://flourishing-genie-1c2f33.netlify.app/', // Allow requests from Angular frontend
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true); // Allow requests with no origin
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
 }));
+
+// Enable preflight requests
+app.options('*', cors());
 app.use(express.json()); // Parse JSON request bodies
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve uploaded files
 
