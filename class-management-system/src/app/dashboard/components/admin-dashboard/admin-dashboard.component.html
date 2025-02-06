@@ -1,38 +1,40 @@
-<div class="admin-dashboard-container p-8 bg-gray-100 min-h-screen">
+<div class="admin-dashboard-container p-4 sm:p-6 md:p-8 bg-gray-100 min-h-screen">
     <!-- Dashboard Header -->
-    <header class="text-center mb-10">
-        <h1 class="text-4xl font-bold text-blue-600">Admin Dashboard</h1>
-        <p class="text-lg text-gray-600 mt-2">Manage students and teachers efficiently</p>
+    <header class="text-center mb-6 md:mb-10">
+        <h1 class="text-3xl sm:text-4xl font-bold text-blue-600">Admin Dashboard</h1>
+        <p class="text-base sm:text-lg text-gray-600 mt-2">Manage students and teachers efficiently</p>
     </header>
 
     <!-- Tabs for Switching Between Students and Teachers -->
-    <div class="tabs flex justify-center gap-8 mb-8">
-        <button class="px-6 py-2 rounded-md font-medium text-white" [class.bg-blue-600]="activeTab === 'students'"
-            [class.bg-gray-400]="activeTab !== 'students'" (click)="setActiveTab('students')">
+    <div class="tabs flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mb-6">
+        <button class="px-4 sm:px-6 py-2 rounded-md font-medium text-white" 
+            [class.bg-blue-600]="activeTab === 'students'" 
+            [class.bg-gray-400]="activeTab !== 'students'" 
+            (click)="setActiveTab('students')">
             Students
         </button>
-        <button class="px-6 py-2 rounded-md font-medium text-white" [class.bg-blue-600]="activeTab === 'teachers'"
-            [class.bg-gray-400]="activeTab !== 'teachers'" (click)="setActiveTab('teachers')">
+        <button class="px-4 sm:px-6 py-2 rounded-md font-medium text-white" 
+            [class.bg-blue-600]="activeTab === 'teachers'" 
+            [class.bg-gray-400]="activeTab !== 'teachers'" 
+            (click)="setActiveTab('teachers')">
             Teachers
         </button>
     </div>
 
     <!-- Search Bar -->
-    <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-semibold text-gray-800">
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">
             {{ activeTab === 'students' ? 'Student List' : 'Teacher List' }}
         </h2>
-        <div class="flex gap-4">
-            <!-- Search Input -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search by name or email"
-                class="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" />
-            <!-- Add Button -->
-            <button class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700" (click)="openModal(false)">
+                class="px-4 py-2 border rounded-md w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            <button class="bg-green-600 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-green-700 w-full sm:w-auto" 
+                (click)="openModal(false)">
                 Add {{ activeTab === 'students' ? 'Student' : 'Teacher' }}
             </button>
         </div>
     </div>
-
 
     <div *ngIf="filteredEntities.length === 0" class="text-center text-gray-600 py-4">
         No {{ activeTab === 'students' ? 'students' : 'teachers' }} found.
@@ -40,30 +42,30 @@
 
     <!-- Table -->
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">
-        <table class="w-full table-auto border-collapse text-black">
+        <table class="w-full table-auto border-collapse text-black text-sm sm:text-base">
             <thead>
                 <tr class="bg-blue-600 text-white">
-                    <th class="px-4 py-2">#</th>
-                    <th class="px-4 py-2">Name</th>
-                    <th class="px-4 py-2">Email</th>
-                    <th class="px-4 py-2">{{ activeTab === 'students' ? 'Course' : 'Speciality' }}</th>
-                    <th class="px-4 py-2">Role</th>
-                    <th class="px-4 py-2 text-center">Actions</th>
+                    <th class="px-2 sm:px-4 py-2">#</th>
+                    <th class="px-2 sm:px-4 py-2">Name</th>
+                    <th class="px-2 sm:px-4 py-2">Email</th>
+                    <th class="px-2 sm:px-4 py-2">{{ activeTab === 'students' ? 'Course' : 'Speciality' }}</th>
+                    <th class="px-2 sm:px-4 py-2">Role</th>
+                    <th class="px-2 sm:px-4 py-2 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let person of filteredEntities; let i = index" class="border-b hover:bg-gray-100">
-                    <td class="px-4 py-2 text-center">{{ i + 1 }}</td>
-                    <td class="px-4 py-2">{{ person.name }}</td>
-                    <td class="px-4 py-2">{{ person.email }}</td>
-                    <td class="px-4 py-2">{{ person.speciality || person.course }}</td>
-                    <td class="px-4 py-2">{{ person.role }}</td>
-                    <td class="px-4 py-2 text-center">
-                        <button class="bg-yellow-500 text-white px-4 py-1 rounded-md hover:bg-yellow-600"
+                    <td class="px-2 sm:px-4 py-2 text-center">{{ i + 1 }}</td>
+                    <td class="px-2 sm:px-4 py-2">{{ person.name }}</td>
+                    <td class="px-2 sm:px-4 py-2">{{ person.email }}</td>
+                    <td class="px-2 sm:px-4 py-2">{{ person.speciality || person.course }}</td>
+                    <td class="px-2 sm:px-4 py-2">{{ person.role }}</td>
+                    <td class="px-2 sm:px-4 py-2 text-center flex flex-col sm:flex-row gap-2 justify-center">
+                        <button class="bg-yellow-500 text-white px-3 sm:px-4 py-1 rounded-md hover:bg-yellow-600"
                             (click)="openModal(true, person)">
                             Update
                         </button>
-                        <button class="bg-red-600 text-white px-4 py-1 rounded-md hover:bg-red-700 ml-2"
+                        <button class="bg-red-600 text-white px-3 sm:px-4 py-1 rounded-md hover:bg-red-700"
                             (click)="deleteEntity(person._id)">
                             Delete
                         </button>
@@ -72,100 +74,4 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Modal -->
-    <div *ngIf="isModalOpen" class="fixed top-0 inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto modal-container">
-        <div class="bg-white max-w-md w-full p-6 rounded-lg shadow-lg relative mx-4 sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl modal-content">
-            <!-- Modal Header -->
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">{{ modalTitle }}</h3>
-            <button class="absolute top-2 right-2 text-gray-600 hover:text-red-500" (click)="closeModal()">
-                ✕
-            </button>
-            <!-- Modal Form -->
-            <form [formGroup]="entityForm" (ngSubmit)="saveEntity()">
-                <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                    <input id="name" type="text" formControlName="name" class="w-full px-3 py-2 border rounded-md"
-                        placeholder="Enter name" />
-                    <div *ngIf="entityForm.controls['name'].invalid && entityForm.controls['name'].touched"
-                        class="text-red-500 text-sm">
-                        Name is required (min 3 characters).
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label for="age" class="block text-sm font-medium text-gray-700 mb-2">Age</label>
-                    <input id="age" type="number" formControlName="age" class="w-full px-3 py-2 border rounded-md"
-                        placeholder="Enter age" />
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <input id="email" type="email" formControlName="email" class="w-full px-3 py-2 border rounded-md"
-                        placeholder="Enter email" />
-                    <div *ngIf="entityForm.controls['email'].invalid && entityForm.controls['email'].touched"
-                        class="text-red-500 text-sm">
-                        A valid email is required.
-                    </div>
-                </div>
-                <!-- Password Field -->
-                <div class="mb-4">
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                    <input id="password" type="password" formControlName="password"
-                        class="w-full px-3 py-2 border rounded-md" placeholder="Enter password" />
-                    <div *ngIf="entityForm.controls['password'].invalid && entityForm.controls['password'].touched"
-                        class="text-red-500 text-sm">
-                        Password is required (min 6 characters).
-                    </div>
-                </div>
-
-                <!-- Confirm Password Field -->
-                <div class="mb-4">
-                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">Confirm
-                        Password</label>
-                    <input id="confirmPassword" type="password" formControlName="confirmPassword"
-                        class="w-full px-3 py-2 border rounded-md" placeholder="Confirm password" />
-                    <div *ngIf="entityForm.hasError('mismatch') && entityForm.controls['confirmPassword'].touched"
-                        class="text-red-500 text-sm">
-                        Passwords do not match.
-                    </div>
-                </div>
-                <div class="mb-4" *ngIf="activeTab === 'students'">
-                    <label for="enrolledDate" class="block text-sm font-medium text-gray-700 mb-2">Enrolled Date</label>
-                    <input id="enrolledDate" type="date" formControlName="enrolledDate"
-                        class="w-full px-3 py-2 border rounded-md" placeholder="Enter enrolledDate" />
-                </div>
-                <!-- Role Dropdown -->
-                <div class="mb-4">
-                    <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                    <select id="role" formControlName="role" class="w-full px-3 py-2 border rounded-md">
-                        <option value="Student">Student</option>
-                        <option value="Teacher">Teacher</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                    <div *ngIf="entityForm.controls['role'].invalid && entityForm.controls['role'].touched"
-                        class="text-red-500 text-sm">
-                        Role is required.
-                    </div>
-                </div>
-                <div class="mb-4" *ngIf="activeTab === 'students'">
-                    <label for="course" class="block text-sm font-medium text-gray-700 mb-2">Course</label>
-                    <input id="course" type="text" formControlName="course" class="w-full px-3 py-2 border rounded-md"
-                        placeholder="Enter course" />
-                </div>
-                <div class="mb-4" *ngIf="activeTab === 'teachers'">
-                    <label for="speciality" class="block text-sm font-medium text-gray-700 mb-2">Speciality</label>
-                    <input id="speciality" type="text" formControlName="speciality"
-                        class="w-full px-3 py-2 border rounded-md" placeholder="Enter speciality" />
-                </div>
-                <div class="mb-4" *ngIf="activeTab === 'teachers'">
-                    <label for="experience" class="block text-sm font-medium text-gray-700 mb-2">Experience</label>
-                    <input id="experience" type="number" formControlName="experience"
-                        class="w-full px-3 py-2 border rounded-md" placeholder="Enter experience" />
-                </div>
-                <!-- Submit Button -->
-                <button type="submit" [disabled]="entityForm.invalid || entityForm.pristine"
-                    class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 cursor-pointer">
-                    {{ isEditMode ? 'Update' : 'Add' }} {{ activeTab === 'students' ? 'Student' : 'Teacher' }}
-                </button>
-            </form>
-        </div>
-    </div>
+</div>

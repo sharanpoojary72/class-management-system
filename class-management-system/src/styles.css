@@ -2,19 +2,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-/* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+html,
+body {
+    height: 100%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ngx-ui-loader-overlay {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Semi-transparent background */
+}
+
+.ngx-ui-loader-fgs {
+    width: 60px;
+    /* Spinner size */
+    height: 60px;
+}
+
+.ngx-ui-loader-text {
+    font-size: 16px;
+    /* Text size */
+    color: #1E3A8A;
+    /* Text color */
+}

@@ -1,0 +1,95 @@
+/* General Styles */
+.navbar {
+    position: relative;
+    z-index: 100;
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    padding: 0.1rem 0;
+}
+
+.nav-links li a,
+.nav-links li button {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+
+/* Hamburger Button */
+#menu-toggle {
+    display: block;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Sliding Menu Styles */
+.sliding-menu {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sliding-menu.open {
+    opacity: 1;
+}
+
+.sliding-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: -1;
+}
+
+/* Show Sliding Menu on Mobile */
+@media (max-width: 767px) {
+    .sliding-menu {
+        display: flex;
+        /* Show the menu on smaller screens */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Slide-In Animation */
+    .sliding-menu.open {
+        transform: translateX(0);
+        /* Slide in from the right */
+    }
+
+    /* Hide Navigation Links Initially */
+    .sliding-menu {
+        transform: translateX(100%);
+        /* Start off-screen to the right */
+        transition: transform 0.3s ease-in-out;
+        /* Smooth transition */
+    }
+}
+
+/* Hide Hamburger Button on Desktop */
+@media (min-width: 768px) {
+    #menu-toggle {
+        display: none;
+        /* Hide hamburger button on larger screens */
+    }
+
+    .sliding-menu {
+        display: none;
+        /* Ensure the sliding menu is hidden on desktop */
+    }
+
+    .nav-links {
+        display: flex;
+        /* Show navigation links on desktop */
+        flex-direction: row;
+        gap: 1rem;
+    }
+}

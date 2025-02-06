@@ -1,15 +1,19 @@
-<!-- navbar.component.html -->
 <nav class="navbar flex items-center justify-between bg-black px-4 min-h-0">
     <!-- Logo Section -->
     <div class="logo navbar-start">
-        <!-- <h4 class="text-white text-lg font-bold">TechLearn</h4> -->
+        <h4 class="text-white text-lg font-bold">TechLearn</h4>
     </div>
-    <!-- Navigation Links -->
-    <button class="block md:hidden text-white text-2xl focus:outline-none" id="menu-toggle">
+
+    <!-- Hamburger Button (Mobile Only) -->
+    <button
+        class="block md:hidden text-white text-2xl focus:outline-none"
+        id="menu-toggle"
+        (click)="toggleMenu()">
         ☰
     </button>
-    <ul class="nav-links flex-col md:flex-row md:flex hidden navbar-end gap-4 mt-2 md:mt-0 text-white"
-        id="menu-links">
+
+    <!-- Desktop Navigation Links -->
+    <ul class="nav-links hidden md:flex md:flex-row gap-4 mt-2 md:mt-0 text-white">
         <li class="cursor-pointer hover:text-blue-500">
             <a routerLink="/">Home</a>
         </li>
@@ -23,4 +27,24 @@
             <button (click)="onLogout()">Logout</button>
         </li>
     </ul>
+
+    <!-- Full-Page Sliding Menu (Mobile Only) -->
+    <div
+        class="sliding-menu fixed top-0 right-0 w-full h-full bg-black z-50 transform translate-x-full transition-transform duration-300 ease-in-out"
+        id="sliding-menu">
+        <ul class="nav-links flex flex-col items-center justify-center gap-8 text-white text-lg">
+            <li class="cursor-pointer hover:text-blue-500">
+                <a routerLink="/" (click)="closeMenu()">Home</a>
+            </li>
+            <li *ngIf="!isAuthenticated()" class="cursor-pointer hover:text-blue-500">
+                <a [routerLink]="['/login/student-login']" [queryParams]="{ role: 'student' }" (click)="closeMenu()">Student Login</a>
+            </li>
+            <li *ngIf="!isAuthenticated()" class="cursor-pointer hover:text-blue-500">
+                <a [routerLink]="['/login/teacher-login']" [queryParams]="{ role: 'teacher' }" (click)="closeMenu()">Faculty Login</a>
+            </li>
+            <li *ngIf="isAuthenticated()" class="cursor-pointer hover:text-blue-500">
+                <button (click)="onLogout(); closeMenu()">Logout</button>
+            </li>
+        </ul>
+    </div>
 </nav>
