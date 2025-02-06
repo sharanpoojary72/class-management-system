@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://your-production-backend.com/api',
+    apiUrl: 'https://class-management-system-fcb8.onrender.com/',
+    debugMode: false ,
 };
